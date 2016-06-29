@@ -1,0 +1,27 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package com.plc_2.siemens;
+
+public class ConvertToIEEE754 {
+    int var1;
+    long var9;
+    String var7;
+    float var5;
+
+    public ConvertToIEEE754() {
+    }
+
+    public float IntToReal(int var11) {
+        this.var1 = var11;
+        this.var5 = 0.0F;
+        this.var7 = "";
+        this.var7 = Integer.toBinaryString(this.var1);
+        this.var9 = Long.parseLong(this.var7, 2);
+        this.var1 = (int)this.var9;
+        this.var5 = Float.intBitsToFloat(this.var1);
+        return this.var5;
+    }
+}

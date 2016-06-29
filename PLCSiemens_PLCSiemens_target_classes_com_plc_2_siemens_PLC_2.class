@@ -1,0 +1,48 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package com.plc_2.siemens;
+
+import autocc.S7Connector.S7_PLC_Connection;
+import com.plc_2.siemens.ConvertToIEEE754;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class PLC_2 {
+    public PLC_2() {
+    }
+
+    public void startPLC_2() {
+        S7_PLC_Connection plc_connection = new S7_PLC_Connection("172.20.2.1", 0, 2);
+        ConvertToIEEE754 convertToIEEE754 = new ConvertToIEEE754();
+        ArrayList adressData = new ArrayList();
+        adressData.add("DB25.DBD0");
+        adressData.add("DB25.DBD4");
+        adressData.add("DB25.DBD12");
+        adressData.add("DB25.DBD192");
+        adressData.add("DB25.DBD48");
+        adressData.add("MD1156");
+
+        for(int i = 0; i < 10; ++i) {
+            int count = 1;
+
+            for(Iterator e = adressData.iterator(); e.hasNext(); ++count) {
+                String address = (String)e.next();
+                int varSD = plc_connection.readInteger(address).intValue();
+                System.out.println("+-------------------------------------|");
+                System.out.println("|  var" + count + ": [" + address + "] " + convertToIEEE754.IntToReal(varSD) + " ");
+            }
+
+            try {
+                Thread.sleep(500L);
+            } catch (InterruptedException var9) {
+                var9.printStackTrace();
+            }
+        }
+
+        System.out.println("+-------------------------------------|");
+        plc_connection.close();
+    }
+}

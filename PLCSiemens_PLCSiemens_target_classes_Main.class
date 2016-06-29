@@ -1,0 +1,16 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+import com.plc_2.siemens.PLC_2;
+
+public class Main {
+    public Main() {
+    }
+
+    public static void main(String[] args) {
+        PLC_2 plc_2 = new PLC_2();
+        plc_2.startPLC_2();
+    }
+}

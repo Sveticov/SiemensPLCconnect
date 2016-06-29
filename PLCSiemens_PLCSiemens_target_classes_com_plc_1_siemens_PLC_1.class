@@ -1,0 +1,29 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package com.plc_1.siemens;
+
+import io.rudin.s7connector.impl.S7TCPConnection;
+import io.rudin.s7connector.impl.nodave.DaveArea;
+import java.io.IOException;
+
+public class PLC_1 {
+    public PLC_1() {
+    }
+
+    public void startPlc() {
+        S7TCPConnection connector = new S7TCPConnection("172.20.2.1", 0, 2);
+        byte[] bytes = connector.read(DaveArea.DB, 25, 212, 0);
+        System.out.println(bytes.toString());
+        bytes[0] = 0;
+
+        try {
+            connector.close();
+        } catch (IOException var4) {
+            var4.printStackTrace();
+        }
+
+    }
+}
